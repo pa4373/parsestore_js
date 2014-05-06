@@ -1,0 +1,6 @@
+lxml==3.3.5
+parse-rest==0.2.20141003
+requests==2.2.1
+wsgiref==0.1.2
+
+#parse-rest : https://github.com/dgrtwo/ParsePy

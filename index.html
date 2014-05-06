@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <title>ParseStore Demo</title>
+    <link rel='stylesheet' type='text/css' href='css/text.css' />
+    <link rel='stylesheet' type='text/css' href='css/reset.css' />
+    <link rel='stylesheet' type='text/css' href='css/960.css' />
+    <link rel='stylesheet' type='text/css' href='css/style.css' />
+  </head>
+  <body>
+    <div class='container_12'>
+      <nav>
+        <div id='logout_button' class='nav_button'>
+          <img src='img/logout_icon.png'>
+            &nbsp;登出
+        </div>
+        <div id='login_button' class='nav_button'>
+          <a href='#login/'>
+            <img src='img/login_icon.png'>
+            &nbsp;登入
+          </a>
+        </div>
+        <div id='cart_button' class='nav_button'>
+          尊爵不凡的 <span id='user_id'></span> 你好 &nbsp;
+          <a href='#mycart/'>
+            <img src='img/cart_icon.png'>
+            &nbsp;購物車
+          </a>
+        </div>
+        <div class='clear'></div>      
+      </nav>
+      <header>
+        <div class='grid_12'>
+          <a href='#'>
+            <img src='img/logo.png' alt='ParseStore 開發．小確幸 / FOR DEMONSTRATION PURPOSES ONLY' id='logo'>
+          </a>
+        </div>
+      </header>
+      <section>
+        <div class='container_12' id='content'>
+          <div class='grid_12'>
+          </div>
+        </div>
+      </section>
+    </div>    
+    <footer>
+      <div class='container_12'>
+        <div class='grid_12'>
+            [The BSD License]<br />
+Copyright &copy; 2014 Frank Tang<br />
+All rights reserved.<br />
+<br />
+Built with <a href='https://parse.com/'>Parse.com</a>, <a href='http://jquery.com/'>jQuery</a>, <a href='https://github.com/olado/doT'>doT.js</a>, <a href='http://960.gs/'>960 grid system</a>, <a href='http://vanilla-js.com/'>Vanilla JS</a>.<br />
+<br />
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:<br />
+<ol>
+    <li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+    <li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+    <li>Neither the name of the author nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</li>
+</ol>
+<br />
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script id="loginTemplate" type="text/x-dot-template"> 
+    <div class='grid_6 prefix_3 suffix_3'>
+      <br />
+      <form id='loginForm' class='white-pink'>
+        <h1>登入<span>立刻使用妳專屬的購物車吧！</span></h1>
+        <div id="loginForm_message"></div>
+        <ol>
+          <li>
+            <label for='loginForm_username'>帳戶名稱</label>
+            <input required type='text' id='loginForm_username'>
+          <li>
+          <li>
+            <label for='loginForm_password'>密碼</label>
+            <input required type='password' id='loginForm_password'>
+          </li>
+          <li>
+            <input required type='submit' id='loginForm_submit' value='登入' class='button'>
+          </li>
+        </ol>
+      </form>
+      <br>
+      <form id='singupForm' class='white-pink'>
+        <h1>註冊<span>花不了妳30秒的，來註冊吧！</span></h1>
+        <div id="signupForm_message"></div>
+        <ol>
+          <li>
+            <label for='singupForm_username'>帳戶名稱</label>
+            <input required type='text' id='singupForm_username'>
+          <li>
+          <li>
+            <label for='singupForm_password'>密碼</label>
+            <input required type='password' id='singupForm_password'>
+          </li>
+          <li>
+            <label for='singupForm_password1'>確認密碼</label>
+            <input required type='password' id='singupForm_password1'>
+          </li>
+          <li>
+            <label for='singupForm_emailAddress'>電子郵件地址</label>
+            <input required type='email' id='singupForm_emailAddress'>
+          </li>
+          <li>
+            <input required type='submit' id='singupForm_submit' value='註冊' class='button'>
+          </li>
+        </ol>
+      </form>
+      <br />
+    </div>
+  </script>
+  <script id="catalogTemplate" type="text/x-dot-template"> 
+    <div id='catalog'>
+      <div class='grid_12'>
+        {{~it :p:index}} 
+          <a href='#dress/{{=p.objectId}}/'>
+            <div class='dress_item'>
+              <img src='{{=p.previewUrl}}'>
+              <div>{{=p.name}}</div>
+              <div class='originalPrice'>NT$ {{=p.originalPrice}}</div>
+              <div>NT$ {{=p.price}}</div>
+            </div>
+          </a>
+        {{~}}
+      </div>
+      <div class='clear'></div>
+      <div id='pagination' class='grid_12'></div>      
+    </div>
+  </script>
+  <script id="catalogPaginationTemplate" type="text/x-dot-template">
+<a href='#page/1/'>&lt;&lt</a> | <a href='#page/{{=it.previous}}/'>&lt;</a> | {{=it.current}} / {{=it.last}} | 
+    <a href='#page/{{=it.next}}/'>&gt;</a> | <a href='#page/{{=it.last}}/'>&gt;&gt;</a>
+  </script>
+  <script id="dress_detialTemplate" type="text/x-dot-template"> 
+    <div id='dress_detial'>    
+      <div class='grid_3 prefix_1 suffix_1'>
+        <img src='{{=it.previewUrl}}'> 
+      </div>
+      <div class='grid_4 suffix_3'>
+        <h1>{{=it.name}}</h1>
+        <hr>
+        <ol>
+          <li>狀態： {{=it.status}}</li>
+          <li>短評： {{=it.comment}}</li>
+          <li>大小： {{=it.size}}</li>
+          <li>原始售價： NT$ {{=it.originalPrice}}</li>
+          <li>建議售價： NT$ {{=it.price}}</li>
+        </ol>
+        <p>
+          <input type='hidden' id='objectId' value='{{=it.objectId}}'>
+          件數： <select id='amount'>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            <option value='4'>4</option>
+            <option value='5'>5</option>
+            <option value='6'>6</option>
+            <option value='7'>7</option>
+            <option value='8'>8</option>
+            <option value='9'>9</option>
+            <option value='10'>10</option>
+          </select>
+        </p>
+        <br />
+        <p>
+          <input type='button' id='addToCart' value='放入購物車' class='addToCartButton'>
+        </p>
+      </div>
+    </div>
+  </script>
+  <script id="mycartTemplate" type="text/x-dot-template"> 
+    <div id='mycart'>
+      <div class='grid_12'>
+        <span class='title'>購物車 / My Cart</span>
+      </div>
+      <div class='grid_12'>
+        {{~it :p:index}}
+            <div>
+              <div class='cart_item'>
+                <img src='{{=p.previewUrl}}'>
+                <a href='#dress/{{=p.dressId}}/'>{{=p.name}}</a>
+                <img src='./img/close_icon.png' class='cart_icon' id='cancel_order_{{=p.dressId}}'>
+                <select id='change_amount_{{=p.dressId}}'>
+                  <option value='1' {{? p.amount === 1}} selected{{?}}>1</option>
+                  <option value='2' {{? p.amount === 2}} selected{{?}}>2</option>
+                  <option value='3' {{? p.amount === 3}} selected{{?}}>3</option>
+                  <option value='4' {{? p.amount === 4}} selected{{?}}>4</option>
+                  <option value='5' {{? p.amount === 5}} selected{{?}}>5</option>
+                  <option value='6' {{? p.amount === 6}} selected{{?}}>6</option>
+                  <option value='7' {{? p.amount === 7}} selected{{?}}>7</option>
+                  <option value='8' {{? p.amount === 8}} selected{{?}}>8</option>
+                  <option value='9' {{? p.amount === 9}} selected{{?}}>9</option>
+                  <option value='10' {{? p.amount === 10}} selected{{?}}>10</option>
+                </select>
+              </div>
+            </div>
+        {{~}}
+        <div class='bottom'>
+          {{? it.length === 0}}          
+            <span id='payButton'></span>No item added yet.
+          {{??}}
+          <input type='button' id='payButton' value='結賬去 &gt;&gt;' class='addToCartButton'>
+          {{?}}
+        </div>
+      </div>
+    </div>    
+  </script>  
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src='https://www.parsecdn.com/js/parse-1.2.18.min.js'></script>  
+  <script src='./js/vendors/doT.min.js'></script>
+  <!--<script type='text/javascript' src='./js/vendors/vanilla.js'></script>-->
+  <script src='./js/app.js'></script>
+</html>
