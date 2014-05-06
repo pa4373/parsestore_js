@@ -171,7 +171,6 @@ var cart = null;
     mycart: function(){
       var currentUser = Parse.User.current();      
       if (currentUser) {
-        document.getElementById('content').innerHTML = templates.mycartTemplate([]);        
         var Order = Parse.Object.extend("Order");
         var query = new Parse.Query(Order);
         query.equalTo('user', currentUser);
