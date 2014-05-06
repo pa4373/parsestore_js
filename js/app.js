@@ -152,8 +152,6 @@ var cart = null;
               if(currentUser){
                 var e = document.getElementById('amount');
                 var amount = parseInt(e.options[e.selectedIndex].value);
-                var dress = new Dress();
-                dress.id = document.getElementById('objectId').value;
                 // Remember we declare myCart.setAmountTo function prior to this object?
                 myCart.setAmountTo(currentUser, dress, amount, function(){
                   alert("此商品已加入到您的購物車。");
