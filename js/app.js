@@ -255,15 +255,11 @@ var cart = null;
           }); 
         });
         // Signup Form Password Match Check Binding.
-        var passwd = ['singupForm_password', 'singupForm_password1', 'singupForm_password'];
-        for(var i = 0; i < passwd.length-1; i++){
-          var e = document.getElementById(passwd[i]);
-          var e_plusplus = document.getElementById(passwd[i+1]);
-          e.addEventListener('keyup', function(){
-            var message = (e.value !== e_plusplus.value) ? '密碼不一致，請再確認一次。' : '';
-            document.getElementById('signupForm_message').innerHTML = message; 
-          });
-        }
+        document.getElementById('singupForm_password1').addEventListener('keyup', function(){
+          var singupForm_password = document.getElementById('singupForm_password');
+          var message = (this.value !== singupForm_password.value) ? '密碼不一致，請再確認一次。' : '';
+          document.getElementById('signupForm_message').innerHTML = message;           
+        });
         // Signup Function binding, provided by Parse SDK.
         document.getElementById('singupForm').addEventListener('submit', function(){
           var user = new Parse.User();
