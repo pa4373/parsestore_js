@@ -1,5 +1,10 @@
 #ParseStore JS
 
+[Live Demo](http://pa4373.github.io/parsestore_js)
+ | [Slides](https://docs.google.com/presentation/d/1hk4l8QOrPbCITCTn3jfzd4g1-P3p509reB-KZDcbDCk/)
+
+-
+
 Copyright (C) 2014 Frank Tang.
 All rights reserved.
 
