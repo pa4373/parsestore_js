@@ -243,11 +243,10 @@ var cart = null;
           Parse.User.logIn(document.getElementById('loginForm_username').value,
               document.getElementById('loginForm_password').value, {
             success: function(user) {
-              // Do stuff after successful login.
               postAction();
             },
             error: function(user, error) {
-              // The login failed. Check error to see why.
+            
             }
           }); 
         });
@@ -259,6 +258,12 @@ var cart = null;
         });
         // Signup Function binding, provided by Parse SDK.
         document.getElementById('singupForm').addEventListener('submit', function(){
+          var singupForm_password = document.getElementById('singupForm_password');
+          var singupForm_password1 = document.getElementById('singupForm_password1');
+          if(singupForm_password.value !== singupForm_password1.value){
+            document.getElementById('signupForm_message').innerHTML = '密碼不一致，請再確認一次。';      
+          }
+          
           var user = new Parse.User();
           user.set("username", document.getElementById('singupForm_username').value);
           user.set("password", document.getElementById('singupForm_password').value);
