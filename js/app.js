@@ -262,6 +262,7 @@ var cart = null;
           var singupForm_password1 = document.getElementById('singupForm_password1');
           if(singupForm_password.value !== singupForm_password1.value){
             document.getElementById('signupForm_message').innerHTML = '密碼不一致，請再確認一次。';      
+            return false; 
           }
           
           var user = new Parse.User();
