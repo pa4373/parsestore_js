@@ -1,5 +1,7 @@
 #ParseStore JS
 
+__Note this application isn't functioning correctly. While the app is still working, the images are missing.__
+
 [Live Demo](http://pa4373.github.io/parsestore_js)
  | [Slides](https://docs.google.com/presentation/d/1hk4l8QOrPbCITCTn3jfzd4g1-P3p509reB-KZDcbDCk/)
 
